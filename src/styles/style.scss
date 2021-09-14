@@ -1,5 +1,8 @@
-@import 'variables.scss';
-@import 'header.scss';
-@import 'pageTitle.scss';
-@import 'cocktailList.scss';
-@import 'footer.scss';
+@import 'base/fonts.scss';
+@import 'abstracts/variables.scss';
+@import 'layout/header.scss';
+@import 'layout/pagetitle.scss';
+@import 'layout/cocktaillist.scss';
+@import 'layout/footer.scss';
+@import 'components/button.scss';
+@import 'base/typography.scss';

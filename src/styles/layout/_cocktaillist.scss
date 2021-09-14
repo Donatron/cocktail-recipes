@@ -1,12 +1,24 @@
 .cocktail-list {
-  min-height: calc(100vh - 184px);
-  margin-top: 184px;
+  min-height: calc(100vh - 170px);
+  margin-top: 170px;
   display: flex;
   flex-direction: row;
 
   &_image {
-    background-color: yellow;
-    padding: 15px;
+    padding: 0 15px 15px 15px ;
+    text-align: left;
+
+    &-image {
+      img {
+        height: 500px;
+        width: auto;
+      }
+
+      p {
+        margin: 8px 0 15px 0;
+      }
+
+    }
   }
 
   &_details {

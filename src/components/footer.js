@@ -4,7 +4,14 @@ const Footer = () => {
   return (
     <div className="footer">
       <p>
-        Copyright 2021 Don Macarthur
+        {"\u00A9"} {new Date().getFullYear()}{" "}
+        <a
+          href="https://donatron.github.io/portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Don Macarthur
+        </a>
       </p>
     </div>
   )
