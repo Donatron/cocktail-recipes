@@ -1,0 +1,30 @@
+.cocktail-list {
+  min-height: calc(100vh - 184px);
+  margin-top: 184px;
+  display: flex;
+  flex-direction: row;
+
+  &_image {
+    background-color: yellow;
+    padding: 15px;
+  }
+
+  &_details {
+    background-color: blue;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cocktail-list {
+    flex-direction: column;
+
+    &_image {
+      height: 40vh;
+    }
+
+    &_details {
+      height: 40vh;
+    }
+  }
+}
