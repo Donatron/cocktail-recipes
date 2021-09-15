@@ -6,12 +6,13 @@
 
   &_image {
     padding: 0 15px 15px 15px ;
-    text-align: left;
+    text-align: center;
 
     &-image {
       img {
-        height: 500px;
+        height: 400px;
         width: auto;
+        border-radius: 6px;
       }
 
       p {
@@ -22,8 +23,7 @@
   }
 
   &_details {
-    background-color: blue;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
   }
 }
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
+import CocktailSearch from './CocktailSearch'
+
 class CocktailList extends Component {
   render() {
     return (
@@ -12,7 +14,9 @@ class CocktailList extends Component {
             <Button color="primary">Recipe</Button>
           </div>
         </div>
-        <div className="col-12 col-md-6 cocktail-list_details">Cocktail details go here...</div>
+        <div className="col-12 col-md-6 cocktail-list_details">
+          <CocktailSearch />
+        </div>
       </div>
     )
   }
