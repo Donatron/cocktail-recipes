@@ -1,6 +1,7 @@
 .cocktail-list {
-  min-height: calc(100vh - 170px);
-  margin-top: 170px;
+  min-height: calc(100vh - 230px);
+  height: 100%;
+  margin-top: 230px;
   display: flex;
   flex-direction: row;
 
@@ -27,16 +28,45 @@
   }
 }
 
+@media screen and (max-width: 992px) {
+  .cocktail-list {
+    &_image {
+      &-image {
+        img {
+          height: 300px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .cocktail-list {
+    &_image {
+      &-image {
+        img {
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cocktail-list {
     flex-direction: column;
+    margin-top: 130px;
 
     &_image {
-      height: 40vh;
+      &-image {
+        img {
+          height: 300px;
+        }
+      }
     }
 
     &_details {
-      height: 40vh;
+      margin-top: 45px;
     }
   }
 }

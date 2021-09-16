@@ -6,7 +6,10 @@ const CocktailSearch = () => {
   const [alcoholContentDropdownOpen, setAlcoholContentDropdownOpen] = useState(false);
   const [glassTypeDropdownOpen, setGlassTypeDropdownOpen] = useState(false);
 
-  const toggleSearchDropdown = () => setSearchByDropdownOpen(prevState => !prevState);
+  const toggleSearchDropdown = (e) => {
+    console.log(e.target);
+    setSearchByDropdownOpen(prevState => !prevState);
+  }
   const toggleAlcoholContentDropdown = () => setAlcoholContentDropdownOpen(prevState => !prevState);
   const toggleGlassTypeDropdown = () => setGlassTypeDropdownOpen(prevState => !prevState);
 

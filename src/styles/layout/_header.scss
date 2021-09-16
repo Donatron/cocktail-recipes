@@ -1,7 +1,8 @@
 .header {
   height: 100px;
   width: 100%;
-  background: linear-gradient(90deg, $colorQuarternary 0%, $colorPrimary 100%);
+  // background: linear-gradient(90deg, $colorQuarternary 0%, $colorPrimary 100%);
+  background: $colorPrimary;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -19,11 +20,27 @@
   }
 
   h1 {
+    font-family: $fontFamilySansSerif;
     font-size: 2.5rem;
     font-style: italic;
-    font-weight: $fontWeightBold;
+    font-weight: $fontWeightRegular;
     text-transform: uppercase;
     margin-top: auto;
     margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    height: auto;
+
+    .fa-cocktail {
+      font-size: 2.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: auto;
+    }
   }
 }

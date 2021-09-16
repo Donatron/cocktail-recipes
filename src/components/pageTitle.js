@@ -3,7 +3,7 @@ import React from 'react';
 const PageTitle = () => {
   return (
     <div className="page-title">
-      <h3>Featured Cocktail</h3>
+      <h3 className="page-title_title">Featured Cocktail</h3>
     </div>
   );
 }
