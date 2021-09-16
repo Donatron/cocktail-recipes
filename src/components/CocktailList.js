@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import CocktailSearch from './CocktailSearch'
 
@@ -11,7 +11,8 @@ class CocktailList extends Component {
           <div className="cocktail-list_image-image">
             <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" alt="margarita" className="img-fluid" />
             <p>Margarita</p>
-            <Button color="primary">Recipe</Button>
+            <Link to="/details" className="btn btn-primary">Recipe</Link>
+
           </div>
         </div>
         <div className="col-xs-12 col-md-6 cocktail-list_details">

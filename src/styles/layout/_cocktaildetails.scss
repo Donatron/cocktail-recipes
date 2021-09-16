@@ -1,0 +1,25 @@
+.cocktail-details {
+  &_details {
+    img {
+      height: 80px;
+      width: auto;
+    }
+
+    &-ingredients {
+      h4 {
+        margin-bottom: 15px;
+      }
+      &_ingredient {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    &-instructions,
+    &-glass,
+    &-alternatives {
+      margin-top: 15px;
+    }
+  }
+}
