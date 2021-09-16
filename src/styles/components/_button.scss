@@ -1,0 +1,29 @@
+.btn-primary {
+  background-color: transparent;
+  border-color: $colorPrimary;
+  color: $colorPrimary;
+  padding: 8px 30px;
+
+  &:hover {
+    background-color: $colorPrimary;
+    border-color: $colorPrimary;
+  }
+}
+
+.btn-secondary {
+  background-color: $colorSecondary;
+  border-color: $colorSecondary;
+  color: $textPrimary;
+
+  &:hover {
+    background-color: $colorPrimary;
+    border-color: $colorPrimary;
+    color: #fff;
+  }
+}
+
+.show>.btn-secondary.dropdown-toggle {
+    background-color: $colorPrimary;
+    border-color: $colorPrimary;
+    color: #fff;
+  }
