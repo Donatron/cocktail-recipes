@@ -24,7 +24,11 @@ class CocktailDetails extends Component {
 
     for (let i = 1; i <= 15; i++) {
       if (selectedCocktail[`strIngredient${i}`]) {
-        ingredients.push(selectedCocktail[`strIngredient${i}`]);
+        const ingredient = {};
+        ingredient.name = selectedCocktail[`strIngredient${i}`];
+        ingredient.measure = selectedCocktail[`strMeasure${i}`];
+
+        ingredients.push(ingredient);
       }
     }
 
@@ -32,12 +36,13 @@ class CocktailDetails extends Component {
       return <CocktailIngredient ingredient={ingredient} key={i} />
     })
   }
+
   render() {
     return (
       <div className="container cocktail-list">
         <div className="col-xs-12 col-md-6 cocktail-list_image">
           <div className="cocktail-list_image-image">
-            <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" className="img-fluid" />
+            <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
             <p>{selectedCocktail.strDrink}</p>
           </div>
         </div>

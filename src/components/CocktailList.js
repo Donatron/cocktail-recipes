@@ -9,7 +9,7 @@ class CocktailList extends Component {
       <div className="container cocktail-list">
         <div className="col-xs-12 col-md-6 cocktail-list_image">
           <div className="cocktail-list_image-image">
-            <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" alt="margarita" className="img-fluid" />
+            <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" alt="margarita" />
             <p>Margarita</p>
             <Link to="/details" className="btn btn-primary">Recipe</Link>
 
