@@ -1,15 +1,33 @@
 .cocktail-details {
+  min-height: calc(100vh - 230px);
+  display: flex;
+  flex-direction: row;
+  margin-top: 230px;
+
+  &_image {
+    &-image {
+      img {
+        height: 300px;
+        border-radius: 6px;
+      }
+    }
+  }
+
   &_details {
+  padding: 0 8px;
     img {
       height: 80px;
       width: auto;
     }
 
     &-ingredients {
+      display: flex;
+      flex-direction: row;
       h4 {
         margin-bottom: 15px;
       }
       &_ingredient {
+        padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -20,6 +38,30 @@
     &-glass,
     &-alternatives {
       margin-top: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .cocktail-details {
+    &_image {
+      &-image {
+        img {
+          height: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cocktail-details {
+    &_image {
+      &-image {
+        img {
+          height: 400px;
+        }
+      }
     }
   }
 }

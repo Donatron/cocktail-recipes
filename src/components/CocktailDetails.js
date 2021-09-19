@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
@@ -39,27 +40,29 @@ class CocktailDetails extends Component {
 
   render() {
     return (
-      <div className="container cocktail-list">
-        <div className="col-xs-12 col-md-6 cocktail-list_image">
-          <div className="cocktail-list_image-image">
-            <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
-            <p>{selectedCocktail.strDrink}</p>
-          </div>
-        </div>
-        <div className="col-xs-12 col-md-6 cocktail-details_details">
-          <div className="row cocktail-details_details-ingredients">
-            <h4>Ingredients</h4>
-            {this.renderIngredients()}
-          </div>
-          <CocktailInstructions instructions={selectedCocktail.strInstructions} />
-          <CocktailGlassType glassType={selectedCocktail.strGlass} />
-          {
-            selectedCocktail.strDrinkAlternate ? <CocktailAlternatives alternatives={selectedCocktail.strDrinkAlternate} /> : null
-          }
-        </div>
-      </div>
-    );
+      <Container className="cocktail-details">
+        <Row>
+          <Col md="6" xs="12" className="cocktail-details_image">
+            <div className="cocktail-details_image-image">
+              <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
+              <p>{selectedCocktail.strDrink}</p>
+            </div>
+          </Col>
+          <Col md="6" xs="12" className="cocktail-details_details">
+            <Row>
+              <h4>Ingredients</h4>
+              {this.renderIngredients()}
+            </Row>
+            <CocktailInstructions instructions={selectedCocktail.strInstructions} />
+            <CocktailGlassType glassType={selectedCocktail.strGlass} />
+            {
+              selectedCocktail.strDrinkAlternate ? <CocktailAlternatives alternatives={selectedCocktail.strDrinkAlternate} /> : null
+            }
+          </Col>
+        </Row>
+      </Container>
+    )
   }
 }
 
-export default CocktailDetails;
+export default CocktailDetails
