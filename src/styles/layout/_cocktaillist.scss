@@ -1,9 +1,9 @@
 .cocktail-list {
-  min-height: calc(100vh - 230px);
-  height: 100%;
-  margin-top: 230px;
-  display: flex;
-  flex-direction: row;
+  @include site-wrapper;
+
+  .row {
+    height: 400px;
+  }
 
   &_image {
     padding: 0 15px 15px 15px ;
@@ -12,7 +12,6 @@
     &-image {
       img {
         height: 400px;
-        width: auto;
         border-radius: 6px;
       }
 
