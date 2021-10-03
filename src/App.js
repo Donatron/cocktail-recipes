@@ -8,7 +8,6 @@ import Home from './components/Home';
 import CocktailDetails from './components/CocktailDetails';
 import Footer from './components/footer'
 
-
 function App() {
   return (
     <div className="App">

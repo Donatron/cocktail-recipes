@@ -43,10 +43,10 @@ class CocktailDetails extends Component {
       <Container className="cocktail-details">
         <Row>
           <Col md="6" xs="12" className="cocktail-details_image">
-            <div className="cocktail-details_image-image">
+            {<div className="cocktail-details_image-image">
               <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
               <p>{selectedCocktail.strDrink}</p>
-            </div>
+            </div>}
           </Col>
           <Col md="6" xs="12" className="cocktail-details_details">
             <Row>

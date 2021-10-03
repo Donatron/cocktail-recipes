@@ -1,13 +1,10 @@
 .cocktail-details {
-  min-height: calc(100vh - 230px);
-  display: flex;
-  flex-direction: row;
-  margin-top: 230px;
+  @include site-wrapper;
 
   &_image {
     &-image {
       img {
-        height: 300px;
+        height: 400px;
         border-radius: 6px;
       }
     }
