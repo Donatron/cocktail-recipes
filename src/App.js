@@ -6,6 +6,7 @@ import './styles/style.scss';
 import Header from './components/header';
 import Home from './components/Home';
 import CocktailDetails from './components/CocktailDetails';
+import CocktailSearchResults from './components/CocktailSearchResults';
 import Footer from './components/footer'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
+          <Route path="/search-results" component={CocktailSearchResults} />
           <Route path="/details" component={CocktailDetails} />
           <Route path="/" component={Home} />
         </Switch>
