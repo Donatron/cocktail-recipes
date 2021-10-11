@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { dataLoading } from '../store/actions';
+import { dataLoading, fetchRandomCocktail } from '../store/actions';
 import LoadingSpinner from './LoadingSpinner'
 import CocktailList from './CocktailList';
 
 const Home = (props) => {
-  const { loading, dataLoading } = props;
+  const { loading, fetchRandomCocktail, cocktail } = props;
 
   useEffect(() => {
-    setTimeout(() => {
-      dataLoading();
-    }, 2000);
+    fetchRandomCocktail();
   }, []);
 
   if (loading) {
@@ -27,8 +25,9 @@ const Home = (props) => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.loading
+    loading: state.loading,
+    cocktail: state.cocktail
   };
 };
 
-export default connect(mapStateToProps, { dataLoading })(Home);
+export default connect(mapStateToProps, { fetchRandomCocktail })(Home);
