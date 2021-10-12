@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
 import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
 import CocktailAlternatives from './CocktailAlternatives';
-
-// ! DUMMY DATA TO BE REMOVED AND REPLACED WITH API CALL
-import dummyData from '../data/dummyData.json';
 import CocktailGlassType from './CocktailGlassType';
-
-const selectedCocktail = dummyData.drinks.filter(cocktail => {
-  return cocktail.idDrink == 11007;
-})[0];
 
 class CocktailDetails extends Component {
   constructor() {
@@ -20,7 +14,7 @@ class CocktailDetails extends Component {
     this.renderIngredients = this.renderIngredients.bind(this);
   }
 
-  renderIngredients = () => {
+  renderIngredients = (selectedCocktail) => {
     let ingredients = [];
 
     for (let i = 1; i <= 15; i++) {
@@ -39,6 +33,14 @@ class CocktailDetails extends Component {
   }
 
   render() {
+    const { cocktail } = this.props;
+    const { id } = this.props.match.params;
+
+    const selectedCocktail = cocktail.cocktails[id];
+
+    // console.log(thisCocktail);
+
+
     return (
       <Container className="cocktail-details">
         <Row>
@@ -51,7 +53,7 @@ class CocktailDetails extends Component {
           <Col md="6" xs="12" className="cocktail-details_details">
             <Row>
               <h4>Ingredients</h4>
-              {this.renderIngredients()}
+              {this.renderIngredients(selectedCocktail)}
             </Row>
             <CocktailInstructions instructions={selectedCocktail.strInstructions} />
             <CocktailGlassType glassType={selectedCocktail.strGlass} />
@@ -65,4 +67,10 @@ class CocktailDetails extends Component {
   }
 }
 
-export default CocktailDetails
+const mapStateToProps = state => {
+  return {
+    cocktail: state.cocktail
+  }
+}
+
+export default connect(mapStateToProps)(CocktailDetails);
