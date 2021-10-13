@@ -32,7 +32,7 @@ const CocktailSearch = () => {
 
   const handleSearchSubmit = () => {
     // Fire off action to search recipes
-    // Redirect to 
+    // Redirect to cocktaildetails
   };
 
   const showSubmitButton = () => {
