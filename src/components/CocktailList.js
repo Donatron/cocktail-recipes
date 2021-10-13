@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Container } from 'reactstrap'
+import { connect } from 'react-redux'
 
-import CocktailSearch from './CocktailSearch'
+import CocktailRandom from './CocktailRandom'
 
 class CocktailList extends Component {
   render() {
+    const { cocktail } = this.props;
+    const { cocktails, isRandom } = cocktail;
+
     return (
-      <div className="container cocktail-list">
-        <div className="col-xs-12 col-md-6 cocktail-list_image">
-          <div className="cocktail-list_image-image">
-            <img src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg" alt="margarita" className="img-fluid" />
-            <p>Margarita</p>
-            <Button color="primary">Recipe</Button>
-          </div>
-        </div>
-        <div className="col-xs-12 col-md-6 cocktail-list_details">
-          <CocktailSearch />
-        </div>
-      </div>
+      <Container className="cocktail-list">
+        {
+          isRandom ? <CocktailRandom cocktail={cocktails} /> : null
+        }
+      </Container>
     )
   }
 }
 
-export default CocktailList;
+const mapStateToProps = state => {
+  return {
+    cocktail: state.cocktail
+  }
+}
+
+export default connect(mapStateToProps)(CocktailList);

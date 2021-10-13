@@ -9,5 +9,22 @@
   .dropdown,
   .input-group {
     margin-bottom: 15px;
+    width: 250px;
+  }
+
+  .dropdown {
+    .btn,
+    .dropdown-menu {
+      width: 250px;
+
+      .dropdown-item {
+        text-align: center;
+
+        &:hover {
+        background-color: lighten($colorSecondary, 15%);
+      }
+
+      }
+    }
   }
 }
