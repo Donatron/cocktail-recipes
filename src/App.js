@@ -16,7 +16,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/search-results" component={CocktailSearchResults} />
-          <Route path="/details" component={CocktailDetails} />
+          <Route path="/details/:id" component={CocktailDetails} />
           <Route path="/" component={Home} />
         </Switch>
         <Footer />

@@ -6,7 +6,7 @@ import PageTitle from './pageTitle';
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="header" >
       <Link to="/">
         <FontAwesomeIcon icon={faCocktail} /></Link>
       <h1>Cocktail Recipes</h1>
