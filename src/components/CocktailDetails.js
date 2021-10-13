@@ -38,16 +38,12 @@ class CocktailDetails extends Component {
 
     const selectedCocktail = cocktail.cocktails[id];
 
-    // console.log(thisCocktail);
-
-
     return (
       <Container className="cocktail-details">
         <Row>
           <Col md="6" xs="12" className="cocktail-details_image">
             {<div className="cocktail-details_image-image">
               <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
-              <p>{selectedCocktail.strDrink}</p>
             </div>}
           </Col>
           <Col md="6" xs="12" className="cocktail-details_details">

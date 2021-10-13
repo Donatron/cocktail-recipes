@@ -6,7 +6,7 @@ import LoadingSpinner from './LoadingSpinner'
 import CocktailList from './CocktailList';
 
 const Home = (props) => {
-  const { loading, fetchRandomCocktail, cocktail } = props;
+  const { loading, fetchRandomCocktail } = props;
 
   useEffect(() => {
     fetchRandomCocktail();

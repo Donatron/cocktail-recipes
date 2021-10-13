@@ -6,8 +6,11 @@ export const FETCH_RANDOM_COCKTAIL = 'FETCH_RANDOM_COCKTAIL';
 const ROOT_URL = 'https://www.thecocktaildb.com/api/json/v1/1';
 
 export const fetchRandomCocktail = () => async (dispatch) => {
-  console.log('Fetching random');
   const response = await axios.get(`${ROOT_URL}/random.php`);
+
+  dispatch({
+    type: DATA_LOADING
+  });
 
   dispatch({
     type: FETCH_RANDOM_COCKTAIL,
