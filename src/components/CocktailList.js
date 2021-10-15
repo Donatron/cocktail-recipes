@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 
-import CocktailRandom from './CocktailRandom'
+import CocktailRandom from './CocktailRandom';
+import CocktailSearchResults from './CocktailSearchResults';
 
 class CocktailList extends Component {
   render() {
@@ -12,7 +13,7 @@ class CocktailList extends Component {
     return (
       <Container className="cocktail-list">
         {
-          isRandom ? <CocktailRandom cocktail={cocktails} /> : null
+          isRandom ? <CocktailRandom cocktail={cocktails} /> : <CocktailSearchResults cocktails={cocktails} />
         }
       </Container>
     )

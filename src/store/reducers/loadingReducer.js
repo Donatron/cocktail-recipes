@@ -1,6 +1,6 @@
 import { DATA_LOADING } from '../actions';
 
-const initialState = false;
+const initialState = true;
 
 export default function (state = initialState, action) {
   switch (action.type) {

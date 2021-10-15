@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Input, Button } from 'reactstrap';
+import { connect } from 'react-redux';
 
-const CocktailSearch = () => {
+import {
+  searchCocktailsByName,
+  searchCocktailsByIngredient,
+  searchCocktailsByGlassType,
+  searchCocktailsByAlcoholContent,
+  fetchRandomCocktail
+} from '../store/actions';
+
+const CocktailSearch = (props) => {
+  const {
+    searchCocktailsByName,
+    searchCocktailsByIngredient,
+    searchCocktailsByGlassType,
+    searchCocktailsByAlcoholContent,
+    fetchRandomCocktail
+  } = props;
   const [searchByDropdownOpen, setSearchByDropdownOpen] = useState(false);
   const [alcoholContentDropdownOpen, setAlcoholContentDropdownOpen] = useState(false);
   const [glassTypeDropdownOpen, setGlassTypeDropdownOpen] = useState(false);
   const [searchType, setSearchType] = useState(null);
   const [searchTerm, setSearchTerm] = useState(null);
-  const [alcoholContent, setAlcoholContent] = useState(null);
-  const [glassType, setGlassType] = useState(null);
+  const [searchParams, setSearchParams] = useState({
+    glassType: null,
+    alcoholContent: null
+  })
 
   const toggleSearchDropdown = (e) => setSearchByDropdownOpen(prevState => !prevState);
   const toggleAlcoholContentDropdown = () => setAlcoholContentDropdownOpen(prevState => !prevState);
@@ -23,19 +41,36 @@ const CocktailSearch = () => {
   };
   const onSelectAlcoholContent = (e) => {
     clearSearchFilters();
-    setAlcoholContent(e.target.value)
+    setSearchParams({
+      alcoholContent: e.target.value
+    });
   };
   const onSelectGlassType = (e) => {
     clearSearchFilters();
-    setGlassType(e.target.value)
+    setSearchParams({
+      glassType: e.target.value
+    });
   };
 
   const handleSearchSubmit = () => {
-    // Fire off action to search recipes
-    // Redirect to cocktaildetails
+    switch (searchType) {
+      case "name":
+        return searchCocktailsByName(searchTerm);
+      case "ingredient":
+        return searchCocktailsByIngredient(searchTerm);
+      case "glassType":
+        return searchCocktailsByGlassType(searchParams.glassType);
+      case "alcoholContent":
+        return searchCocktailsByAlcoholContent(searchParams.alcoholContent);
+      case "random":
+        return fetchRandomCocktail();
+      default:
+        return;
+    }
   };
 
   const showSubmitButton = () => {
+    const { glassType, alcoholContent } = searchParams
     if ((searchType === "name" || searchType === "ingredient") && (searchTerm !== null && searchTerm !== "")) return true;
     if (searchType === "alcoholContent" && alcoholContent !== null) return true;
     if (searchType === "glassType" && glassType !== null) return true;
@@ -44,8 +79,10 @@ const CocktailSearch = () => {
 
   const clearSearchFilters = () => {
     setSearchTerm(null);
-    setAlcoholContent(null);
-    setGlassType(null);
+    setSearchParams({
+      glassType: null,
+      alcoholContent: null
+    });
   }
 
   return (
@@ -111,9 +148,14 @@ const CocktailSearch = () => {
       {
         showSubmitButton() ? <Button color="primary" onClick={handleSearchSubmit}>Search</Button> : null
       }
-
     </div>
   );
 }
 
-export default CocktailSearch;
+export default connect(null, {
+  searchCocktailsByName,
+  searchCocktailsByIngredient,
+  searchCocktailsByGlassType,
+  searchCocktailsByAlcoholContent,
+  fetchRandomCocktail
+})(CocktailSearch);
