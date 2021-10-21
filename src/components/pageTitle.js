@@ -21,7 +21,6 @@ const PageTitle = (props) => {
   }
 
   const setSelectedCocktailPageTitle = () => {
-    console.log('hey dude');
     return `${selectedCocktail.strDrink.toUpperCase()} RECIPE`;
   }
 
