@@ -7,30 +7,38 @@ import {
   searchCocktailsByIngredient,
   searchCocktailsByGlassType,
   searchCocktailsByAlcoholContent,
-  fetchRandomCocktail
+  fetchRandomCocktail,
+  setSearchType,
+  setSearchTerm,
+  clearSearchTerm,
+  setSearchParams,
+  clearSearchParams
 } from '../store/actions';
 
 const CocktailSearch = (props) => {
   const {
+    search,
     searchCocktailsByName,
     searchCocktailsByIngredient,
     searchCocktailsByGlassType,
     searchCocktailsByAlcoholContent,
-    fetchRandomCocktail
+    fetchRandomCocktail,
+    setSearchType,
+    setSearchTerm,
+    clearSearchTerm,
+    setSearchParams,
+    clearSearchParams
   } = props;
+  const { searchType, searchTerm, searchParams } = search
+
   const [searchByDropdownOpen, setSearchByDropdownOpen] = useState(false);
   const [alcoholContentDropdownOpen, setAlcoholContentDropdownOpen] = useState(false);
   const [glassTypeDropdownOpen, setGlassTypeDropdownOpen] = useState(false);
-  const [searchType, setSearchType] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(null);
-  const [searchParams, setSearchParams] = useState({
-    glassType: null,
-    alcoholContent: null
-  })
 
   const toggleSearchDropdown = (e) => setSearchByDropdownOpen(prevState => !prevState);
   const toggleAlcoholContentDropdown = () => setAlcoholContentDropdownOpen(prevState => !prevState);
   const toggleGlassTypeDropdown = () => setGlassTypeDropdownOpen(prevState => !prevState);
+
   const onSelectSearchType = (e) => {
     clearSearchFilters();
     setSearchType(e.target.value)
@@ -41,15 +49,11 @@ const CocktailSearch = (props) => {
   };
   const onSelectAlcoholContent = (e) => {
     clearSearchFilters();
-    setSearchParams({
-      alcoholContent: e.target.value
-    });
+    setSearchParams(searchType, e.target.value);
   };
   const onSelectGlassType = (e) => {
     clearSearchFilters();
-    setSearchParams({
-      glassType: e.target.value
-    });
+    setSearchParams(searchType, e.target.value);
   };
 
   const handleSearchSubmit = () => {
@@ -78,11 +82,8 @@ const CocktailSearch = (props) => {
   }
 
   const clearSearchFilters = () => {
-    setSearchTerm(null);
-    setSearchParams({
-      glassType: null,
-      alcoholContent: null
-    });
+    clearSearchTerm();
+    clearSearchParams();
   }
 
   return (
@@ -152,10 +153,21 @@ const CocktailSearch = (props) => {
   );
 }
 
-export default connect(null, {
+const mapStateToProps = state => {
+  return {
+    search: state.search
+  }
+}
+
+export default connect(mapStateToProps, {
   searchCocktailsByName,
   searchCocktailsByIngredient,
   searchCocktailsByGlassType,
   searchCocktailsByAlcoholContent,
-  fetchRandomCocktail
+  fetchRandomCocktail,
+  setSearchType,
+  setSearchTerm,
+  clearSearchTerm,
+  setSearchParams,
+  clearSearchParams
 })(CocktailSearch);
