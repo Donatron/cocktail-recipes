@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Input, Button } from 'reactstrap';
+import React from 'react';
+import { InputGroup, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+
+import SearchTypeDropdown from './dropdowns/SearchTypeDropdown';
+import AlcoholContentDropdown from './dropdowns/AlcoholContentDropdown';
+import GlassTypeDropdown from './dropdowns/GlassTypeDropdown';
 
 import {
   searchCocktailsByName,
@@ -23,37 +27,15 @@ const CocktailSearch = (props) => {
     searchCocktailsByGlassType,
     searchCocktailsByAlcoholContent,
     fetchRandomCocktail,
-    setSearchType,
     setSearchTerm,
     clearSearchTerm,
-    setSearchParams,
     clearSearchParams
   } = props;
-  const { searchType, searchTerm, searchParams } = search
+  const { searchType, searchTerm, searchParams } = search;
 
-  const [searchByDropdownOpen, setSearchByDropdownOpen] = useState(false);
-  const [alcoholContentDropdownOpen, setAlcoholContentDropdownOpen] = useState(false);
-  const [glassTypeDropdownOpen, setGlassTypeDropdownOpen] = useState(false);
-
-  const toggleSearchDropdown = (e) => setSearchByDropdownOpen(prevState => !prevState);
-  const toggleAlcoholContentDropdown = () => setAlcoholContentDropdownOpen(prevState => !prevState);
-  const toggleGlassTypeDropdown = () => setGlassTypeDropdownOpen(prevState => !prevState);
-
-  const onSelectSearchType = (e) => {
-    clearSearchFilters();
-    setSearchType(e.target.value)
-  }
   const onSearchTermChange = (e) => {
     clearSearchFilters();
     setSearchTerm(e.target.value)
-  };
-  const onSelectAlcoholContent = (e) => {
-    clearSearchFilters();
-    setSearchParams(searchType, e.target.value);
-  };
-  const onSelectGlassType = (e) => {
-    clearSearchFilters();
-    setSearchParams(searchType, e.target.value);
   };
 
   const handleSearchSubmit = () => {
@@ -89,52 +71,9 @@ const CocktailSearch = (props) => {
   return (
     <div className="container cocktail-search">
       <h4>Search Cocktails</h4>
-      <Dropdown isOpen={searchByDropdownOpen} toggle={toggleSearchDropdown}>
-        <DropdownToggle caret>
-          Search By
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem onClick={onSelectSearchType} value="name">Name</DropdownItem>
-          <DropdownItem onClick={onSelectSearchType} value="ingredient">Ingredient</DropdownItem>
-          <DropdownItem onClick={onSelectSearchType} value="alcoholContent">Alcohol Content</DropdownItem>
-          <DropdownItem onClick={onSelectSearchType} value="glassType">Glass Type</DropdownItem>
-          <DropdownItem onClick={onSelectSearchType} value="random">Random</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-      {
-        searchType === "alcoholContent" ? (
-          <Dropdown isOpen={alcoholContentDropdownOpen} toggle={toggleAlcoholContentDropdown}>
-            <DropdownToggle caret>
-              Alcohol Content
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={onSelectAlcoholContent} value="alcoholic">Alcoholic</DropdownItem>
-              <DropdownItem onClick={onSelectAlcoholContent} value="non alcoholic">Non Alcoholic</DropdownItem>
-              <DropdownItem onClick={onSelectAlcoholContent} value="optional alcohol">Optional Alcohol</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-
-        ) : null
-      }
-      {
-        searchType === "glassType" ? (
-          <Dropdown isOpen={glassTypeDropdownOpen} toggle={toggleGlassTypeDropdown}>
-            <DropdownToggle caret>
-              Glass Type
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={onSelectGlassType} value="highball glass">Highball Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="cocktail glass">Cocktail Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="old-fashioned glass">Old-fashioned Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="whiskey glass">Whiskey Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="collins glass">Collins Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="pousse cafe glass">Pousse Cafe Glass</DropdownItem>
-              <DropdownItem onClick={onSelectGlassType} value="champagne flute">Champagne Flute</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-
-        ) : null
-      }
+      <SearchTypeDropdown clearSearchFilters={clearSearchFilters} />
+      {searchType === "alcoholContent" ? <AlcoholContentDropdown clearSearchFilters={clearSearchFilters} /> : null}
+      {searchType === "glassType" ? <GlassTypeDropdown clearSearchFilters={clearSearchFilters} /> : null}
       {
         searchType === "name" || searchType === "ingredient" ? (
           <InputGroup>
