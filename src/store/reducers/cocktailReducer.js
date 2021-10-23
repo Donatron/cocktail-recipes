@@ -1,8 +1,9 @@
-import { FETCH_RANDOM_COCKTAIL } from '../actions';
+import { FETCH_RANDOM_COCKTAIL, FETCH_COCKTAILS, FETCH_COCKTAIL } from '../actions';
 
 const initialState = {
   isRandom: false,
-  cocktails: {}
+  cocktails: {},
+  selectedCocktail: null
 }
 
 export default function (state = initialState, action) {
@@ -14,6 +15,22 @@ export default function (state = initialState, action) {
           [action.payload.idDrink]: action.payload
         },
         isRandom: true
+      }
+    case FETCH_COCKTAILS:
+      const cocktailRecipes = {}
+      action.payload.map(cocktail => {
+        return cocktailRecipes[cocktail.idDrink] = cocktail
+      });
+
+      return {
+        ...state,
+        isRandom: false,
+        cocktails: cocktailRecipes
+      }
+    case FETCH_COCKTAIL:
+      return {
+        ...state,
+        selectedCocktail: action.payload
       }
     default:
       return state;

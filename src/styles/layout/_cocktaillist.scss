@@ -1,10 +1,6 @@
 .cocktail-list {
   @include site-wrapper;
 
-  .row {
-    height: 400px;
-  }
-
   &_image {
     padding: 0 15px 15px 15px ;
     text-align: center;
