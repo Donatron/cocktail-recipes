@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import SearchTypeDropdown from './dropdowns/SearchTypeDropdown';
 import AlcoholContentDropdown from './dropdowns/AlcoholContentDropdown';
 import GlassTypeDropdown from './dropdowns/GlassTypeDropdown';
+import ErrorMessage from './ErrorMessage';
 
 import {
   searchCocktailsByName,
@@ -22,6 +23,7 @@ import {
 const CocktailSearch = (props) => {
   const {
     search,
+    error,
     searchCocktailsByName,
     searchCocktailsByIngredient,
     searchCocktailsByGlassType,
@@ -79,12 +81,13 @@ const CocktailSearch = (props) => {
           <InputGroup>
             <Input
               placeholder="enter search term"
-              className="cocktail-search_input"
+              className={`cocktail-search_input ${error.message && 'error'}`}
               onChange={onSearchTermChange}
             />
           </InputGroup>
         ) : null
       }
+      {error.message ? <ErrorMessage message={error.message} /> : null}
       {
         showSubmitButton() ? <Button color="primary" onClick={handleSearchSubmit}>Search</Button> : null
       }
@@ -94,7 +97,8 @@ const CocktailSearch = (props) => {
 
 const mapStateToProps = state => {
   return {
-    search: state.search
+    search: state.search,
+    error: state.error
   }
 }
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
-import { fetchCocktailById } from '../store/actions'
+import { fetchCocktailById, clearError } from '../store/actions'
 import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
 import CocktailAlternatives from './CocktailAlternatives';
@@ -13,6 +14,7 @@ class CocktailDetails extends Component {
     super();
 
     this.renderIngredients = this.renderIngredients.bind(this);
+    this.resetError = this.resetError.bind(this);
   }
 
   componentDidMount() {
@@ -38,43 +40,54 @@ class CocktailDetails extends Component {
     })
   }
 
-  render() {
-    const { cocktail } = this.props;
-    const { id } = this.props.match.params;
+  resetError = () => {
+    this.props.clearError()
+  }
 
+  render() {
+    const { cocktail, error } = this.props;
     const { selectedCocktail } = cocktail;
 
-    {
-      return selectedCocktail ? (
-        <Container className="cocktail-details">
-          <Row>
-            <Col md="6" xs="12" className="cocktail-details_image">
-              {<div className="cocktail-details_image-image">
-                <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
-              </div>}
-            </Col>
-            <Col md="6" xs="12" className="cocktail-details_details">
-              <Row>
-                <h4>Ingredients</h4>
-                {this.renderIngredients(selectedCocktail)}
-              </Row>
-              <CocktailInstructions instructions={selectedCocktail.strInstructions} />
-              <CocktailGlassType glassType={selectedCocktail.strGlass} />
-              {
-                selectedCocktail.strDrinkAlternate ? <CocktailAlternatives alternatives={selectedCocktail.strDrinkAlternate} /> : null
-              }
-            </Col>
-          </Row>
-        </Container>
-      ) : <p>No Cocktail found</p>
-    }
+
+    return selectedCocktail && !error.message ? (
+      <Container className="cocktail-details">
+        <Row>
+          <Col md="6" xs="12" className="cocktail-details_image">
+            {<div className="cocktail-details_image-image">
+              <img src={`${selectedCocktail.strDrinkThumb}`} alt="margarita" />
+            </div>}
+          </Col>
+          <Col md="6" xs="12" className="cocktail-details_details">
+            <Row>
+              <h4>Ingredients</h4>
+              {this.renderIngredients(selectedCocktail)}
+            </Row>
+            <CocktailInstructions instructions={selectedCocktail.strInstructions} />
+            <CocktailGlassType glassType={selectedCocktail.strGlass} />
+            {
+              selectedCocktail.strDrinkAlternate ? <CocktailAlternatives alternatives={selectedCocktail.strDrinkAlternate} /> : null
+            }
+          </Col>
+        </Row>
+      </Container>
+    ) : error.message && <Container className="cocktail-details">
+      <Row>
+        <Col xs={12}>
+          {error.message}
+        </Col>
+        <Col xs={12}>
+          <Link to="/" onClick={this.resetError}>Back to home</Link>
+        </Col>
+      </Row>
+    </Container>
   }
 }
 
 const mapStateToProps = state => {
   return {
     cocktail: state.cocktail,
+    error: state.error
   }
 }
 
-export default connect(mapStateToProps, { fetchCocktailById })(CocktailDetails);
+export default connect(mapStateToProps, { fetchCocktailById, clearError })(CocktailDetails);

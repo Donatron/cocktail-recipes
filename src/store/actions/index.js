@@ -9,17 +9,26 @@ export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 export const SET_SEARCH_PARAMS = 'SET_SEARCH_PARAMS';
 export const CLEAR_SEARCH_TERM = 'CLEAR_SEARCH_TERM';
 export const CLEAR_SEARCH_PARAMS = 'CLEAR_SEARCH_PARAMS';
+export const SET_ERROR = 'SET_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 
 const ROOT_URL = 'https://www.thecocktaildb.com/api/json/v1/1';
 
 export const fetchRandomCocktail = () => async (dispatch) => {
-  const response = await axios.get(`${ROOT_URL}/random.php`);
+  let response;
 
-  dispatch({
-    type: FETCH_RANDOM_COCKTAIL,
-    payload: response.data.drinks[0]
-  });
+  try {
+    response = await axios.get(`${ROOT_URL}/random.php`);
+
+    dispatch({
+      type: FETCH_RANDOM_COCKTAIL,
+      payload: response.data.drinks[0]
+    });
+
+  } catch (error) {
+    dispatch(setError('Having trouble loading a random cocktail. Please try again'));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -31,12 +40,18 @@ export const fetchCocktailById = (id) => async (dispatch) => {
     type: DATA_LOADING
   });
 
-  const response = await await axios.get(`${ROOT_URL}/lookup.php?i=${id}`);
+  let response;
 
-  dispatch({
-    type: FETCH_COCKTAIL,
-    payload: response.data.drinks[0]
-  });
+  try {
+    response = await await axios.get(`${ROOT_URL}/lookup.php?i=${id}`);
+
+    dispatch({
+      type: FETCH_COCKTAIL,
+      payload: response.data.drinks[0]
+    });
+  } catch (error) {
+    dispatch(setError('Sorry, unable to locate a cocktail with that ID'));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -48,12 +63,18 @@ export const searchCocktailsByName = (name) => async (dispatch) => {
     type: DATA_LOADING
   });
 
-  const response = await axios.get(`${ROOT_URL}/search.php?s=${name}`);
+  let response;
 
-  dispatch({
-    type: FETCH_COCKTAILS,
-    payload: response.data.drinks
-  });
+  try {
+    response = await axios.get(`${ROOT_URL}/search.php?s=${name}`);
+
+    dispatch({
+      type: FETCH_COCKTAILS,
+      payload: response.data.drinks
+    });
+  } catch (error) {
+    dispatch(setError(`Sorry, having trouble finding cocktails named ${name}. Please try another search.`));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -65,12 +86,18 @@ export const searchCocktailsByIngredient = (ingredient) => async (dispatch) => {
     type: DATA_LOADING
   });
 
-  const response = await axios.get(`${ROOT_URL}/filter.php?i=${ingredient}`);
+  let response;
 
-  dispatch({
-    type: FETCH_COCKTAILS,
-    payload: response.data.drinks
-  });
+  try {
+    response = await axios.get(`${ROOT_URL}/filter.php?i=${ingredient}`);
+
+    dispatch({
+      type: FETCH_COCKTAILS,
+      payload: response.data.drinks
+    });
+  } catch (error) {
+    dispatch(setError(`Sorry, having trouble finding cocktails using ${ingredient}. Please try another search.`));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -82,12 +109,18 @@ export const searchCocktailsByGlassType = (glassType) => async (dispatch) => {
     type: DATA_LOADING
   });
 
-  const response = await axios.get(`${ROOT_URL}/filter.php?g=${glassType}`);
+  let response;
 
-  dispatch({
-    type: FETCH_COCKTAILS,
-    payload: response.data.drinks
-  });
+  try {
+    response = await axios.get(`${ROOT_URL}/filter.php?g=${glassType}`);
+
+    dispatch({
+      type: FETCH_COCKTAILS,
+      payload: response.data.drinks
+    });
+  } catch (error) {
+    dispatch(setError(`Sorry, having trouble finding cocktails using a ${glassType}. Please try another search.`));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -99,12 +132,19 @@ export const searchCocktailsByAlcoholContent = (alcoholContent) => async (dispat
     type: DATA_LOADING
   });
 
-  const response = await axios.get(`${ROOT_URL}/filter.php?a=${alcoholContent}`);
+  let response;
 
-  dispatch({
-    type: FETCH_COCKTAILS,
-    payload: response.data.drinks
-  });
+  try {
+    response = await axios.get(`${ROOT_URL}/filtered.php?a=${alcoholContent}`);
+
+    dispatch({
+      type: FETCH_COCKTAILS,
+      payload: response.data.drinks
+    });
+
+  } catch (error) {
+    dispatch(setError(`Sorry, having trouble finding cocktails with ${alcoholContent} content. Please try another search.`));
+  }
 
   dispatch({
     type: DATA_LOADING
@@ -142,6 +182,19 @@ export const clearSearchParams = () => {
 export const clearSearchTerm = (searchTerm) => {
   return {
     type: CLEAR_SEARCH_TERM
+  }
+}
+
+export const setError = (message) => {
+  return {
+    type: SET_ERROR,
+    payload: message
+  }
+}
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR
   }
 }
 

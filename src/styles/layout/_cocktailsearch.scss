@@ -10,6 +10,10 @@
   .input-group {
     margin-bottom: 15px;
     width: 250px;
+
+    .error {
+      border: solid 1px #842029;
+    }
   }
 
   .dropdown {
