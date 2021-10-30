@@ -1,8 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Container, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+import { clearSelectedCocktail } from '../store/actions'
 
 const PageTitle = (props) => {
-  const { search, cocktail, loading } = props;
+  const { search, cocktail, clearSelectedCocktail, loading } = props;
   const { selectedCocktail } = cocktail;
 
   if (loading) return null;
@@ -24,11 +30,22 @@ const PageTitle = (props) => {
     return `${selectedCocktail.strDrink.toUpperCase()} RECIPE`;
   }
 
+  const handleClick = () => {
+    clearSelectedCocktail();
+  }
+
   return (
     <div className="page-title">
-      <h3 className="page-title_title">
-        {cocktail.isRandom ? 'Featured Cocktail' : setPageTitle()}
-      </h3>
+      <Container>
+        <Row >
+          <Col className="page-title_title">
+            {selectedCocktail && <Link to="/" ><FontAwesomeIcon icon={faArrowLeft} onClick={handleClick} /></Link>}
+            <h3>
+              {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
+            </h3>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
@@ -41,4 +58,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(PageTitle);
+export default connect(mapStateToProps, { clearSelectedCocktail })(PageTitle);

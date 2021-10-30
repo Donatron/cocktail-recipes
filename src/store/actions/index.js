@@ -11,11 +11,16 @@ export const CLEAR_SEARCH_TERM = 'CLEAR_SEARCH_TERM';
 export const CLEAR_SEARCH_PARAMS = 'CLEAR_SEARCH_PARAMS';
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const CLEAR_SELECTED_COCKTAIL = 'CLEAR_SELECTED_COCKTAIL';
 
 
 const ROOT_URL = 'https://www.thecocktaildb.com/api/json/v1/1';
 
 export const fetchRandomCocktail = () => async (dispatch) => {
+  dispatch({
+    type: DATA_LOADING
+  });
+
   let response;
 
   try {
@@ -195,6 +200,12 @@ export const setError = (message) => {
 export const clearError = () => {
   return {
     type: CLEAR_ERROR
+  }
+}
+
+export const clearSelectedCocktail = () => {
+  return {
+    type: CLEAR_SELECTED_COCKTAIL
   }
 }
 
