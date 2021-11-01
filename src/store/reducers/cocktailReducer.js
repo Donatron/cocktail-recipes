@@ -2,7 +2,8 @@ import {
   FETCH_RANDOM_COCKTAIL,
   FETCH_COCKTAILS,
   FETCH_COCKTAIL,
-  CLEAR_SELECTED_COCKTAIL
+  CLEAR_SELECTED_COCKTAIL,
+  RESET_STATE,
 } from '../actions';
 
 const initialState = {
@@ -42,6 +43,8 @@ export default function cocktailReducer(state = initialState, action) {
         ...state,
         selectedCocktail: null
       }
+    case RESET_STATE:
+      return initialState
     default:
       return state;
   }

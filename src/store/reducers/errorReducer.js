@@ -1,4 +1,4 @@
-import { SET_ERROR, CLEAR_ERROR } from '../actions';
+import { SET_ERROR, CLEAR_ERROR, RESET_STATE } from '../actions';
 
 const initialState = {
   message: null
@@ -16,6 +16,8 @@ export default function errorReducer(state = initialState, action) {
         ...state,
         message: null
       }
+    case RESET_STATE:
+      return initialState;
     default:
       return state;
   }

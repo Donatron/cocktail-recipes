@@ -12,6 +12,7 @@ export const CLEAR_SEARCH_PARAMS = 'CLEAR_SEARCH_PARAMS';
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const CLEAR_SELECTED_COCKTAIL = 'CLEAR_SELECTED_COCKTAIL';
+export const RESET_STATE = 'RESET_STATE';
 
 
 const ROOT_URL = 'https://www.thecocktaildb.com/api/json/v1/1';
@@ -140,7 +141,7 @@ export const searchCocktailsByAlcoholContent = (alcoholContent) => async (dispat
   let response;
 
   try {
-    response = await axios.get(`${ROOT_URL}/filtered.php?a=${alcoholContent}`);
+    response = await axios.get(`${ROOT_URL}/filter.php?a=${alcoholContent}`);
 
     dispatch({
       type: FETCH_COCKTAILS,
@@ -206,6 +207,12 @@ export const clearError = () => {
 export const clearSelectedCocktail = () => {
   return {
     type: CLEAR_SELECTED_COCKTAIL
+  }
+}
+
+export const resetState = () => {
+  return {
+    type: RESET_STATE
   }
 }
 

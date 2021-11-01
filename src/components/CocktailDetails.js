@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
-import { fetchCocktailById, clearError } from '../store/actions'
+import { fetchCocktailById, clearError, clearSelectedCocktail } from '../store/actions'
 import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
 import CocktailAlternatives from './CocktailAlternatives';
@@ -42,6 +42,7 @@ class CocktailDetails extends Component {
 
   resetError = () => {
     this.props.clearError()
+    this.props.clearSelectedCocktail();
   }
 
   render() {
@@ -76,7 +77,7 @@ class CocktailDetails extends Component {
           {error.message}
         </Col>
         <Col xs={12}>
-          <Link to="/" onClick={this.resetError}>Back to home</Link>
+          <Link to="/" onClick={this.resetError}>Go Back</Link>
         </Col>
       </Row>
     </Container>
@@ -90,4 +91,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchCocktailById, clearError })(CocktailDetails);
+export default connect(mapStateToProps, { fetchCocktailById, clearError, clearSelectedCocktail })(CocktailDetails);

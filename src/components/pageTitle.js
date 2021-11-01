@@ -1,14 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { clearSelectedCocktail } from '../store/actions'
+import { clearSelectedCocktail, fetchRandomCocktail, resetState } from '../store/actions'
 
 const PageTitle = (props) => {
-  const { search, cocktail, clearSelectedCocktail, loading } = props;
+  const {
+    search,
+    cocktail,
+    clearSelectedCocktail,
+    fetchRandomCocktail,
+    resetState,
+    loading,
+    error
+  } = props;
   const { selectedCocktail } = cocktail;
 
   if (loading) return null;
@@ -34,6 +42,14 @@ const PageTitle = (props) => {
     clearSelectedCocktail();
   }
 
+  const handleNewSearch = () => {
+    resetState();
+    fetchRandomCocktail();
+  }
+
+  if (error.message) return null;
+
+
   return (
     <div className="page-title">
       <Container>
@@ -43,6 +59,7 @@ const PageTitle = (props) => {
             <h3>
               {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
             </h3>
+            {!selectedCocktail && Object.keys(cocktail.cocktails).length > 1 ? <Button color="primary" onClick={handleNewSearch}>New Search</Button> : null}
           </Col>
         </Row>
       </Container>
@@ -55,7 +72,12 @@ const mapStateToProps = state => {
     search: state.search,
     cocktail: state.cocktail,
     loading: state.loading,
+    error: state.error
   }
 }
 
-export default connect(mapStateToProps, { clearSelectedCocktail })(PageTitle);
+export default connect(mapStateToProps, {
+  clearSelectedCocktail,
+  fetchRandomCocktail,
+  resetState,
+})(PageTitle);
