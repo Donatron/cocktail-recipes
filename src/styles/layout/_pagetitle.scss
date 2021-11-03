@@ -7,6 +7,25 @@
   text-align: center;
   background-color: #fff;
   z-index: 10;
+
+  &_title {
+    display: flex;
+    flex-direction: row;
+    h3 {
+      display: inline-block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fa-arrow-left {
+      font-size: 2rem;
+      color: $colorQuarternary;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {

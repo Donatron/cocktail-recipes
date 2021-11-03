@@ -1,4 +1,11 @@
-import { SET_SEARCH_TYPE, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, SET_SEARCH_PARAMS, CLEAR_SEARCH_PARAMS } from '../actions'
+import {
+  SET_SEARCH_TYPE,
+  SET_SEARCH_TERM,
+  CLEAR_SEARCH_TERM,
+  SET_SEARCH_PARAMS,
+  CLEAR_SEARCH_PARAMS,
+  RESET_STATE
+} from '../actions'
 
 const initialState = {
   searchType: null,
@@ -9,7 +16,7 @@ const initialState = {
   }
 }
 
-export default function (state = initialState, action) {
+export default function searchReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SEARCH_TYPE:
       return {
@@ -41,6 +48,8 @@ export default function (state = initialState, action) {
           ...initialState.searchParams
         }
       }
+    case RESET_STATE:
+      return initialState
     default:
       return state;
   }

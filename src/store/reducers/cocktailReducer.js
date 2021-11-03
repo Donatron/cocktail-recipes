@@ -1,4 +1,10 @@
-import { FETCH_RANDOM_COCKTAIL, FETCH_COCKTAILS, FETCH_COCKTAIL } from '../actions';
+import {
+  FETCH_RANDOM_COCKTAIL,
+  FETCH_COCKTAILS,
+  FETCH_COCKTAIL,
+  CLEAR_SELECTED_COCKTAIL,
+  RESET_STATE,
+} from '../actions';
 
 const initialState = {
   isRandom: false,
@@ -6,7 +12,7 @@ const initialState = {
   selectedCocktail: null
 }
 
-export default function (state = initialState, action) {
+export default function cocktailReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_RANDOM_COCKTAIL:
       return {
@@ -32,6 +38,13 @@ export default function (state = initialState, action) {
         ...state,
         selectedCocktail: action.payload
       }
+    case CLEAR_SELECTED_COCKTAIL:
+      return {
+        ...state,
+        selectedCocktail: null
+      }
+    case RESET_STATE:
+      return initialState
     default:
       return state;
   }

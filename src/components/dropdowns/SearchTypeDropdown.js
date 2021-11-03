@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { setSearchType } from '../../store/actions'
 
 export const SearchTypeDropdown = (props) => {
-  const { clearSearchFilters, setSearchType } = props;
+  const { clearSearchFilters, setSearchType, search } = props;
+  const { searchType } = search;
   const [searchByDropdownOpen, setSearchByDropdownOpen] = useState(false);
   const toggleSearchDropdown = (e) => setSearchByDropdownOpen(prevState => !prevState);
 
@@ -17,7 +18,7 @@ export const SearchTypeDropdown = (props) => {
   return (
     <Dropdown isOpen={searchByDropdownOpen} toggle={toggleSearchDropdown}>
       <DropdownToggle caret>
-        Search By
+        {searchType ? searchType.toUpperCase() : "Search By"}
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem onClick={onSelectSearchType} value="name">Name</DropdownItem>
@@ -30,4 +31,10 @@ export const SearchTypeDropdown = (props) => {
   );
 }
 
-export default connect(null, { setSearchType })(SearchTypeDropdown);
+const mapStateToProps = state => {
+  return {
+    search: state.search
+  }
+}
+
+export default connect(mapStateToProps, { setSearchType })(SearchTypeDropdown);
