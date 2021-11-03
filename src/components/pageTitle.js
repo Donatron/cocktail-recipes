@@ -5,7 +5,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { clearSelectedCocktail, fetchRandomCocktail, resetState } from '../store/actions'
+import { clearSelectedCocktail, fetchRandomCocktail, resetState, clearError } from '../store/actions'
 
 const PageTitle = (props) => {
   const {
@@ -15,7 +15,8 @@ const PageTitle = (props) => {
     fetchRandomCocktail,
     resetState,
     loading,
-    error
+    error,
+    clearError
   } = props;
   const { selectedCocktail } = cocktail;
 
@@ -40,6 +41,7 @@ const PageTitle = (props) => {
 
   const handleClick = () => {
     clearSelectedCocktail();
+    clearError();
   }
 
   const handleNewSearch = () => {
@@ -80,4 +82,5 @@ export default connect(mapStateToProps, {
   clearSelectedCocktail,
   fetchRandomCocktail,
   resetState,
+  clearError
 })(PageTitle);
