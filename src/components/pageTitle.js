@@ -18,7 +18,7 @@ const PageTitle = (props) => {
     error,
     clearError
   } = props;
-  const { selectedCocktail } = cocktail;
+  const { selectedCocktail, isRandom } = cocktail;
 
   if (loading) return null;
 
@@ -49,8 +49,14 @@ const PageTitle = (props) => {
     fetchRandomCocktail();
   }
 
+  const showNewSearchButton = () => {
+    const { cocktails, selectedCocktail, isRandom } = props.cocktail;
+    return !selectedCocktail && !isRandom && Object.keys(cocktails).length
+  }
+
   if (error.message) return null;
 
+  const showNewSearch = showNewSearchButton();
 
   return (
     <div className="page-title">
@@ -61,7 +67,7 @@ const PageTitle = (props) => {
             <h3>
               {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
             </h3>
-            {!selectedCocktail && Object.keys(cocktail.cocktails).length > 1 ? <Button color="primary" onClick={handleNewSearch}>New Search</Button> : null}
+            {showNewSearch ? <Button color="primary" onClick={handleNewSearch}>New Search</Button> : null}
           </Col>
         </Row>
       </Container>
