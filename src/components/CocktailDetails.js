@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
+import { fetchCocktailById, clearError, clearSelectedCocktail } from '../store/actions'
 import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
 import CocktailAlternatives from './CocktailAlternatives';
@@ -12,6 +14,12 @@ class CocktailDetails extends Component {
     super();
 
     this.renderIngredients = this.renderIngredients.bind(this);
+    this.resetError = this.resetError.bind(this);
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.fetchCocktailById(id);
   }
 
   renderIngredients = (selectedCocktail) => {
@@ -32,13 +40,17 @@ class CocktailDetails extends Component {
     })
   }
 
+  resetError = () => {
+    this.props.clearError()
+    this.props.clearSelectedCocktail();
+  }
+
   render() {
-    const { cocktail } = this.props;
-    const { id } = this.props.match.params;
+    const { cocktail, error } = this.props;
+    const { selectedCocktail } = cocktail;
 
-    const selectedCocktail = cocktail.cocktails[id];
 
-    return (
+    return selectedCocktail && !error.message ? (
       <Container className="cocktail-details">
         <Row>
           <Col md="6" xs="12" className="cocktail-details_image">
@@ -59,14 +71,24 @@ class CocktailDetails extends Component {
           </Col>
         </Row>
       </Container>
-    )
+    ) : error.message && <Container className="cocktail-details">
+      <Row>
+        <Col xs={12}>
+          {error.message}
+        </Col>
+        <Col xs={12}>
+          <Link to="/" onClick={this.resetError}>Go Back</Link>
+        </Col>
+      </Row>
+    </Container>
   }
 }
 
 const mapStateToProps = state => {
   return {
-    cocktail: state.cocktail
+    cocktail: state.cocktail,
+    error: state.error
   }
 }
 
-export default connect(mapStateToProps)(CocktailDetails);
+export default connect(mapStateToProps, { fetchCocktailById, clearError, clearSelectedCocktail })(CocktailDetails);

@@ -3,20 +3,21 @@ import { Container, Row } from 'reactstrap';
 
 import CocktailSearchResult from './CocktailSearchResult'
 
-import dummyData from '../data/dummyData.json';
+const CocktailSearchResults = ({ cocktails }) => {
 
-const CocktailSearchResults = () => {
+  const renderSearchResults = () => {
+    const searchResults = []
+    for (const cocktail in cocktails) {
+      searchResults.push(cocktail);
+    }
 
-  const renderSearchResults = (searchResults) => {
-    return searchResults.drinks.map(searchResult => {
-      return <CocktailSearchResult searchResult={searchResult} />
-    });
+    return searchResults.map(searchResult => <CocktailSearchResult searchResult={cocktails[searchResult]} key={cocktails[searchResult].idDrink} />);
   }
 
   return (
     <Container className="cocktail-search-results">
       <Row>
-        {renderSearchResults(dummyData)}
+        {renderSearchResults()}
       </Row>
     </Container >
   );

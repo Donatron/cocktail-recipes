@@ -1,71 +1,116 @@
-import React, { useState } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, Input, Button } from 'reactstrap';
+import React from 'react';
+import { InputGroup, Input, Button } from 'reactstrap';
+import { connect } from 'react-redux';
 
-const CocktailSearch = () => {
-  const [searchByDropdownOpen, setSearchByDropdownOpen] = useState(false);
-  const [alcoholContentDropdownOpen, setAlcoholContentDropdownOpen] = useState(false);
-  const [glassTypeDropdownOpen, setGlassTypeDropdownOpen] = useState(false);
+import SearchTypeDropdown from './dropdowns/SearchTypeDropdown';
+import AlcoholContentDropdown from './dropdowns/AlcoholContentDropdown';
+import GlassTypeDropdown from './dropdowns/GlassTypeDropdown';
+import ErrorMessage from './ErrorMessage';
 
-  const toggleSearchDropdown = (e) => {
-    console.log(e.target);
-    setSearchByDropdownOpen(prevState => !prevState);
+import {
+  searchCocktailsByName,
+  searchCocktailsByIngredient,
+  searchCocktailsByGlassType,
+  searchCocktailsByAlcoholContent,
+  fetchRandomCocktail,
+  setSearchType,
+  setSearchTerm,
+  clearSearchTerm,
+  setSearchParams,
+  clearSearchParams
+} from '../store/actions';
+
+const CocktailSearch = (props) => {
+  const {
+    search,
+    error,
+    searchCocktailsByName,
+    searchCocktailsByIngredient,
+    searchCocktailsByGlassType,
+    searchCocktailsByAlcoholContent,
+    fetchRandomCocktail,
+    setSearchTerm,
+    clearSearchTerm,
+    clearSearchParams
+  } = props;
+  const { searchType, searchTerm, searchParams } = search;
+
+  const onSearchTermChange = (e) => {
+    clearSearchFilters();
+    setSearchTerm(e.target.value)
+  };
+
+  const handleSearchSubmit = () => {
+    switch (searchType) {
+      case "name":
+        return searchCocktailsByName(searchTerm);
+      case "ingredient":
+        return searchCocktailsByIngredient(searchTerm);
+      case "glassType":
+        return searchCocktailsByGlassType(searchParams.glassType);
+      case "alcoholContent":
+        return searchCocktailsByAlcoholContent(searchParams.alcoholContent);
+      case "random":
+        return fetchRandomCocktail();
+      default:
+        return;
+    }
+  };
+
+  const showSubmitButton = () => {
+    const { glassType, alcoholContent } = searchParams
+    if ((searchType === "name" || searchType === "ingredient") && (searchTerm !== null && searchTerm !== "")) return true;
+    if (searchType === "alcoholContent" && alcoholContent !== null) return true;
+    if (searchType === "glassType" && glassType !== null) return true;
+    if (searchType === "random") return true;
   }
-  const toggleAlcoholContentDropdown = () => setAlcoholContentDropdownOpen(prevState => !prevState);
-  const toggleGlassTypeDropdown = () => setGlassTypeDropdownOpen(prevState => !prevState);
 
-  const onChange = (e) => {
-    console.log(e.target.value);
+  const clearSearchFilters = () => {
+    clearSearchTerm();
+    clearSearchParams();
   }
 
   return (
     <div className="container cocktail-search">
       <h4>Search Cocktails</h4>
-      <Dropdown isOpen={searchByDropdownOpen} toggle={toggleSearchDropdown}>
-        <DropdownToggle caret>
-          Search By
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>Name</DropdownItem>
-          <DropdownItem>Ingredient</DropdownItem>
-          <DropdownItem>Alcohol Content</DropdownItem>
-          <DropdownItem>Glass Type</DropdownItem>
-          <DropdownItem>Random</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-      <Dropdown isOpen={alcoholContentDropdownOpen} toggle={toggleAlcoholContentDropdown}>
-        <DropdownToggle caret>
-          Alcohol Content
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>Alcoholic</DropdownItem>
-          <DropdownItem>Non Alcoholic</DropdownItem>
-          <DropdownItem>Optional Alcohol</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-      <Dropdown isOpen={glassTypeDropdownOpen} toggle={toggleGlassTypeDropdown}>
-        <DropdownToggle caret>
-          Glass Type
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>Highball Glass</DropdownItem>
-          <DropdownItem>Cocktail Glass</DropdownItem>
-          <DropdownItem>Old-fashioned Glass</DropdownItem>
-          <DropdownItem>Whiskey Glass</DropdownItem>
-          <DropdownItem>Collins Glass</DropdownItem>
-          <DropdownItem>Pousse Cafe Glass</DropdownItem>
-          <DropdownItem>Champagne Flute</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-      <InputGroup>
-        <Input
-          placeholder="enter search term"
-          className="cocktail-search_input"
-          onChange={onChange}
-        />
-      </InputGroup>
-      <Button color="primary">Search</Button>
+      <SearchTypeDropdown clearSearchFilters={clearSearchFilters} />
+      {searchType === "alcoholContent" ? <AlcoholContentDropdown clearSearchFilters={clearSearchFilters} /> : null}
+      {searchType === "glassType" ? <GlassTypeDropdown clearSearchFilters={clearSearchFilters} /> : null}
+      {
+        searchType === "name" || searchType === "ingredient" ? (
+          <InputGroup>
+            <Input
+              placeholder="enter search term"
+              className={`cocktail-search_input ${error.message && 'error'}`}
+              onChange={onSearchTermChange}
+            />
+          </InputGroup>
+        ) : null
+      }
+      {error.message ? <ErrorMessage message={error.message} /> : null}
+      {
+        showSubmitButton() ? <Button color="primary" onClick={handleSearchSubmit}>Search</Button> : null
+      }
     </div>
   );
 }
 
-export default CocktailSearch;
+const mapStateToProps = state => {
+  return {
+    search: state.search,
+    error: state.error
+  }
+}
+
+export default connect(mapStateToProps, {
+  searchCocktailsByName,
+  searchCocktailsByIngredient,
+  searchCocktailsByGlassType,
+  searchCocktailsByAlcoholContent,
+  fetchRandomCocktail,
+  setSearchType,
+  setSearchTerm,
+  clearSearchTerm,
+  setSearchParams,
+  clearSearchParams
+})(CocktailSearch);

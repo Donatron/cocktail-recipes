@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { dataLoading, fetchRandomCocktail } from '../store/actions';
+import { fetchRandomCocktail } from '../store/actions';
 import LoadingSpinner from './LoadingSpinner'
 import CocktailList from './CocktailList';
 
 const Home = (props) => {
-  const { loading, fetchRandomCocktail } = props;
+  const { loading, fetchRandomCocktail, cocktail } = props;
 
   useEffect(() => {
-    fetchRandomCocktail();
+    if (!Object.keys(cocktail.cocktails).length) {
+      fetchRandomCocktail();
+    }
   }, []);
 
   if (loading) {
