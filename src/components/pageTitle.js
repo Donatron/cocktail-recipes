@@ -67,7 +67,7 @@ const PageTitle = (props) => {
             <h3>
               {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
             </h3>
-            {showNewSearch ? <Button color="primary" onClick={handleNewSearch}>New Search</Button> : null}
+            {showNewSearch ? <Button color="secondary" onClick={handleNewSearch}>New Search</Button> : null}
           </Col>
         </Row>
       </Container>

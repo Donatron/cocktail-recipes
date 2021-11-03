@@ -3,7 +3,7 @@
   top: 100px;
   left: 0;
   width: 100%;
-  padding: 45px 0;
+  padding: 30px 0;
   text-align: center;
   background-color: #fff;
   z-index: 10;
@@ -15,11 +15,12 @@
       display: inline-block;
       margin-left: auto;
       margin-right: auto;
+      font-size: 3rem;
     }
 
     .fa-arrow-left {
       font-size: 2rem;
-      color: $colorQuarternary;
+      color: $colorSecondary;
 
       &:hover {
         cursor: pointer;
