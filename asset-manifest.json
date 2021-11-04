@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.166426b4.chunk.css",
-    "main.js": "/static/js/main.b90c9376.chunk.js",
-    "main.js.map": "/static/js/main.b90c9376.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.387f749e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.387f749e.js.map",
-    "static/css/2.f2512455.chunk.css": "/static/css/2.f2512455.chunk.css",
-    "static/js/2.cbc6412e.chunk.js": "/static/js/2.cbc6412e.chunk.js",
-    "static/js/2.cbc6412e.chunk.js.map": "/static/js/2.cbc6412e.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.f2512455.chunk.css.map": "/static/css/2.f2512455.chunk.css.map",
-    "static/css/main.166426b4.chunk.css.map": "/static/css/main.166426b4.chunk.css.map",
-    "static/js/2.cbc6412e.chunk.js.LICENSE.txt": "/static/js/2.cbc6412e.chunk.js.LICENSE.txt",
-    "static/media/style.scss": "/static/media/MYRIADPRO-REGULAR.d30b0546.woff"
+    "main.css": "/cocktail-recipes/static/css/main.731697a5.chunk.css",
+    "main.js": "/cocktail-recipes/static/js/main.b90c9376.chunk.js",
+    "main.js.map": "/cocktail-recipes/static/js/main.b90c9376.chunk.js.map",
+    "runtime-main.js": "/cocktail-recipes/static/js/runtime-main.1f158840.js",
+    "runtime-main.js.map": "/cocktail-recipes/static/js/runtime-main.1f158840.js.map",
+    "static/css/2.f2512455.chunk.css": "/cocktail-recipes/static/css/2.f2512455.chunk.css",
+    "static/js/2.cbc6412e.chunk.js": "/cocktail-recipes/static/js/2.cbc6412e.chunk.js",
+    "static/js/2.cbc6412e.chunk.js.map": "/cocktail-recipes/static/js/2.cbc6412e.chunk.js.map",
+    "index.html": "/cocktail-recipes/index.html",
+    "static/css/2.f2512455.chunk.css.map": "/cocktail-recipes/static/css/2.f2512455.chunk.css.map",
+    "static/css/main.731697a5.chunk.css.map": "/cocktail-recipes/static/css/main.731697a5.chunk.css.map",
+    "static/js/2.cbc6412e.chunk.js.LICENSE.txt": "/cocktail-recipes/static/js/2.cbc6412e.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/cocktail-recipes/static/media/MYRIADPRO-REGULAR.d30b0546.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.387f749e.js",
+    "static/js/runtime-main.1f158840.js",
     "static/css/2.f2512455.chunk.css",
     "static/js/2.cbc6412e.chunk.js",
-    "static/css/main.166426b4.chunk.css",
+    "static/css/main.731697a5.chunk.css",
     "static/js/main.b90c9376.chunk.js"
   ]
 }
