@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.166426b4.chunk.css",
+    "main.js": "/static/js/main.b90c9376.chunk.js",
+    "main.js.map": "/static/js/main.b90c9376.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.387f749e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.387f749e.js.map",
+    "static/css/2.f2512455.chunk.css": "/static/css/2.f2512455.chunk.css",
+    "static/js/2.cbc6412e.chunk.js": "/static/js/2.cbc6412e.chunk.js",
+    "static/js/2.cbc6412e.chunk.js.map": "/static/js/2.cbc6412e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.f2512455.chunk.css.map": "/static/css/2.f2512455.chunk.css.map",
+    "static/css/main.166426b4.chunk.css.map": "/static/css/main.166426b4.chunk.css.map",
+    "static/js/2.cbc6412e.chunk.js.LICENSE.txt": "/static/js/2.cbc6412e.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/static/media/MYRIADPRO-REGULAR.d30b0546.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.387f749e.js",
+    "static/css/2.f2512455.chunk.css",
+    "static/js/2.cbc6412e.chunk.js",
+    "static/css/main.166426b4.chunk.css",
+    "static/js/main.b90c9376.chunk.js"
+  ]
+}
