@@ -7,18 +7,21 @@ import Header from './components/header';
 import Home from './components/Home';
 import CocktailDetails from './components/CocktailDetails';
 import CocktailSearchResults from './components/CocktailSearchResults';
-import Footer from './components/footer'
+import Footer from './components/footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route path="/search-results" component={CocktailSearchResults} />
-          <Route path="/details/:id" component={CocktailDetails} />
-          <Route path="/" component={Home} />
-        </Switch>
+        <ScrollToTop>
+          <Header />
+          <Switch>
+            <Route path="/search-results" component={CocktailSearchResults} />
+            <Route path="/details/:id" component={CocktailDetails} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </ScrollToTop>
         <Footer />
       </BrowserRouter >
     </div>

@@ -11,19 +11,19 @@
 }
 
 .btn-secondary {
-  background-color: $colorSecondary;
+  background-color: transparent;
   border-color: $colorSecondary;
-  color: $textPrimary;
+  color: $colorSecondary;
 
   &:hover {
-    background-color: $colorPrimary;
-    border-color: $colorPrimary;
+    background-color: $colorSecondary;
+    border-color: $colorSecondary;
     color: #fff;
   }
 }
 
 .show>.btn-secondary.dropdown-toggle {
-    background-color: $colorPrimary;
-    border-color: $colorPrimary;
+    background-color: $colorSecondary;
+    border-color: $colorSecondary;
     color: #fff;
   }

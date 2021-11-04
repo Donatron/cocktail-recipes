@@ -4,18 +4,19 @@ h3,
 h6 {
   font-family: $fontFamilySerif;
   margin-bottom: 0;
-  color: $textPrimary;
+  color: $colorTertiary;
 }
 
 h4 {
   font-family: $fontFamilySansSerif;
+  color: $colorTertiary;
 }
 
 p {
   font-family: $fontFamilySerif;
   margin-bottom: 0;
-  color: $textPrimary;
+  color: $textSecondary;
   font-size: 1.25rem;
   line-height: 30px;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
 }

@@ -13,21 +13,21 @@
 
   &_details {
   padding: 0 8px;
+    h4 {
+      margin-bottom: 30px;
+    }
     img {
       height: 100px;
       width: auto;
     }
 
     .row {
-      margin-bottom: 30px;
+      margin-bottom: 45px;
     }
 
     &-ingredients {
       display: flex;
       flex-direction: row;
-      h4 {
-        margin-bottom: 15px;
-      }
       &_ingredient {
         padding: 15px 8px;
         display: flex;
