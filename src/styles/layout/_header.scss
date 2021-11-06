@@ -21,12 +21,17 @@
 
   h1 {
     font-family: $fontFamilySansSerif;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-style: italic;
     font-weight: $fontWeightRegular;
     text-transform: uppercase;
+    color: $colorTertiary;
     margin-top: auto;
     margin-bottom: 0;
+  }
+
+  .btn-newSearch {
+    margin-left: auto;
   }
 }
 

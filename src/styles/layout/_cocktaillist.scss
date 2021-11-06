@@ -9,10 +9,12 @@
       img {
         height: 400px;
         border-radius: 6px;
+        box-shadow: $boxShadow;
+
       }
 
       p {
-        margin: 8px 0 15px 0;
+        margin: 15px 0 30px 0;
       }
 
     }

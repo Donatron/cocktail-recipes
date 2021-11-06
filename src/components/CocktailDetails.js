@@ -8,6 +8,7 @@ import CocktailIngredient from './CocktailIngredient';
 import CocktailInstructions from './CocktailInstructions';
 import CocktailAlternatives from './CocktailAlternatives';
 import CocktailGlassType from './CocktailGlassType';
+import LoadingSpinner from './LoadingSpinner';
 
 class CocktailDetails extends Component {
   constructor() {
@@ -46,9 +47,10 @@ class CocktailDetails extends Component {
   }
 
   render() {
-    const { cocktail, error } = this.props;
+    const { cocktail, error, loading } = this.props;
     const { selectedCocktail } = cocktail;
 
+    { if (loading) return <LoadingSpinner /> }
 
     return selectedCocktail && !error.message ? (
       <Container className="cocktail-details">
@@ -87,7 +89,8 @@ class CocktailDetails extends Component {
 const mapStateToProps = state => {
   return {
     cocktail: state.cocktail,
-    error: state.error
+    error: state.error,
+    loading: state.loading
   }
 }
 
