@@ -11,19 +11,31 @@
 }
 
 .btn-secondary {
-  background-color: $colorSecondary;
+  background-color: transparent;
   border-color: $colorSecondary;
-  color: $textPrimary;
+  color: $colorSecondary;
 
   &:hover {
-    background-color: $colorPrimary;
-    border-color: $colorPrimary;
+    background-color: $colorSecondary;
+    border-color: $colorSecondary;
     color: #fff;
   }
 }
 
+.btn-info {
+  background-color: transparent;
+  border-color: $colorTertiary;
+  color: $colorTertiary;
+
+  &:hover {
+    background-color: $colorTertiary;
+    border-color: $colorTertiary;
+    color: white;
+  }
+}
+
 .show>.btn-secondary.dropdown-toggle {
-    background-color: $colorPrimary;
-    border-color: $colorPrimary;
+    background-color: $colorSecondary;
+    border-color: $colorSecondary;
     color: #fff;
   }

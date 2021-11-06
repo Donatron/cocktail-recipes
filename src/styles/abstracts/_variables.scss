@@ -1,19 +1,21 @@
 // Colors
-$colorPrimary:  #11cbd7;
-$colorSecondary: #9feed1;
-$colorTertiary: #fff6a2;
-$colorQuarternary: #f60c86;
+$colorPrimary:  #1af06f;
+$colorSecondary: #fa9848;
+$colorTertiary: #286097;
+$colorQuarternary: #f99398;
 
 // Text Colours
 $textPrimary: #212121;
 $textSecondary: #757575;
 
 $lineColor: #bdbdbd;
-$iconColor: #000000;
+$iconColor: $colorTertiary;
 
 // Fonts
-$fontFamilySerif: 'caslon';
-$fontFamilySansSerif: "myriadpro", Arial;
+$fontFamilySerif: Trattatello, fantasy;
+$fontFamilySansSerif: Marker Felt, fantasy;
 $fontWeightBold: 700;
 $fontWeightRegular: 500;
 $fontWeightLight: 300;
+
+$boxShadow: 0px 0px 10px 2px rgba(0,0,0,0.3);

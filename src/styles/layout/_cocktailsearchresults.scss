@@ -4,10 +4,31 @@
   img {
     height: 200px;
     border-radius: 6px;
+      box-shadow: $boxShadow;
   }
 
   &_result {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+
+    p {
+      margin-top: 15px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      transition: all 0.2s ease;
+    }
+    
+    &:hover {
+      cursor: pointer;
+
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 
