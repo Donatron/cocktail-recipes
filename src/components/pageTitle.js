@@ -5,20 +5,18 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { clearSelectedCocktail, fetchRandomCocktail, resetState, clearError } from '../store/actions'
+import { clearSelectedCocktail, clearError } from '../store/actions'
 
 const PageTitle = (props) => {
   const {
     search,
     cocktail,
     clearSelectedCocktail,
-    fetchRandomCocktail,
-    resetState,
     loading,
     error,
     clearError
   } = props;
-  const { selectedCocktail, isRandom } = cocktail;
+  const { selectedCocktail } = cocktail;
 
   if (loading) return null;
 
@@ -44,19 +42,7 @@ const PageTitle = (props) => {
     clearError();
   }
 
-  const handleNewSearch = () => {
-    resetState();
-    fetchRandomCocktail();
-  }
-
-  const showNewSearchButton = () => {
-    const { cocktails, selectedCocktail, isRandom } = props.cocktail;
-    return !selectedCocktail && !isRandom && Object.keys(cocktails).length
-  }
-
   if (error.message) return null;
-
-  const showNewSearch = showNewSearchButton();
 
   return (
     <div className="page-title">
@@ -67,7 +53,6 @@ const PageTitle = (props) => {
             <h3>
               {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
             </h3>
-            {showNewSearch ? <Button color="secondary" onClick={handleNewSearch}>New Search</Button> : null}
           </Col>
         </Row>
       </Container>
@@ -86,7 +71,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   clearSelectedCocktail,
-  fetchRandomCocktail,
-  resetState,
   clearError
 })(PageTitle);

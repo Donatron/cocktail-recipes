@@ -22,6 +22,18 @@
   }
 }
 
+.btn-info {
+  background-color: transparent;
+  border-color: $colorTertiary;
+  color: $colorTertiary;
+
+  &:hover {
+    background-color: $colorTertiary;
+    border-color: $colorTertiary;
+    color: white;
+  }
+}
+
 .show>.btn-secondary.dropdown-toggle {
     background-color: $colorSecondary;
     border-color: $colorSecondary;
