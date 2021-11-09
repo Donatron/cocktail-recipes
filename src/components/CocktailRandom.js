@@ -13,7 +13,7 @@ const CocktailRandom = ({ cocktail }) => {
         <div className="cocktail-list_image-image">
           <img src={`${cocktail[cocktailId].strDrinkThumb}`} alt="margarita" />
           <p>{cocktail[cocktailId].strDrink}</p>
-          <Link to={{ pathname: `details/${cocktailId}`, state: 'flushDeal' }} className="btn btn-primary" onClick={() => console.log('trying new method on link')}>Recipe</Link>
+          <Link to={`details/${cocktailId}`} className="btn btn-primary" onClick={() => window.location.href = `details/${cocktailId}`}>Recipe</Link>
 
         </div>
       </Col>
