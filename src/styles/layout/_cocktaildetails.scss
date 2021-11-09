@@ -60,15 +60,8 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
   .cocktail-details {
-    &_image {
-      &-image {
-        img {
-          height: 400px;
-        }
-      }
-    }
     &_details {
       margin-top: 45px;
 
