@@ -5,44 +5,39 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { clearSelectedCocktail, clearError } from '../store/actions'
+import { clearSelectedCocktail, clearError, resetState, fetchRandomCocktail } from '../store/actions'
 
 const PageTitle = (props) => {
   const {
-    search,
     cocktail,
     clearSelectedCocktail,
     loading,
     error,
-    clearError
+    clearError,
+    resetState,
+    fetchRandomCocktail
   } = props;
   const { selectedCocktail } = cocktail;
 
   if (loading) return null;
-
-  const setPageTitle = () => {
-    if (selectedCocktail) return setSelectedCocktailPageTitle();
-    if (search.searchType === 'name' || search.searchType === 'ingredient') {
-      return `COCKTAILS USING ${search.searchTerm.toUpperCase()} RECIPES`;
-    }
-    if (search.searchType === 'alcoholContent') {
-      return `RECIPES WITH ${search.searchParams.alcoholContent.toUpperCase()} CONTENT`;
-    }
-    if (search.searchType === 'glassType') {
-      return `RECIPES USING A ${search.searchParams.glassType.toUpperCase()}`;
-    }
-  }
-
-  const setSelectedCocktailPageTitle = () => {
-    return `${selectedCocktail.strDrink.toUpperCase()} RECIPE`;
-  }
 
   const handleClick = () => {
     clearSelectedCocktail();
     clearError();
   }
 
+  const handleResetSearch = () => {
+    resetState();
+    fetchRandomCocktail();
+  }
+
   if (error.message) return null;
+
+  const setPageTitle = () => {
+    if (cocktail.isRandom && !selectedCocktail) return 'Featured Cocktail';
+    if (selectedCocktail) return `${selectedCocktail.strDrink} Recipe`;
+    return 'Search Results';
+  }
 
   return (
     <div className="page-title">
@@ -50,9 +45,10 @@ const PageTitle = (props) => {
         <Row >
           <Col className="page-title_title">
             {selectedCocktail && <Link to="/" ><FontAwesomeIcon icon={faArrowLeft} onClick={handleClick} /></Link>}
-            <h3>
-              {cocktail.isRandom && !selectedCocktail ? 'Featured Cocktail' : setPageTitle()}
+            <h3 className={cocktail.isRandom ? "page-title_title-random" : "page-title_title-selected"}>
+              {setPageTitle()}
             </h3>
+            {cocktail.isRandom || selectedCocktail ? null : <Button color="primary" onClick={handleResetSearch}>Reset</Button>}
           </Col>
         </Row>
       </Container>
@@ -62,7 +58,6 @@ const PageTitle = (props) => {
 
 const mapStateToProps = state => {
   return {
-    search: state.search,
     cocktail: state.cocktail,
     loading: state.loading,
     error: state.error
@@ -71,5 +66,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   clearSelectedCocktail,
-  clearError
+  clearError,
+  resetState,
+  fetchRandomCocktail
 })(PageTitle);
