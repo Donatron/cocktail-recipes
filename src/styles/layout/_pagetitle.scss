@@ -11,9 +11,17 @@
   &_title {
     display: flex;
     flex-direction: row;
-    h3 {
+
+    &-random {
       display: inline-block;
       margin-left: auto;
+      margin-right: auto;
+      font-size: 3rem;
+    }
+
+    &-selected {
+      display: inline-block;
+      margin-left: 0;
       margin-right: auto;
       font-size: 3rem;
     }
@@ -37,6 +45,17 @@
       font-size: 2rem;
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+  .page-title {
+    .fa-arrow-left {
+      font-size: 2.5rem;
+      padding: 4px 0;
+      margin-right: 15px;
+    }
+  }
+
 }
 
 @media screen and (max-width: 576px) {
