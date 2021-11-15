@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cocktail-recipes/static/css/main.5500200b.chunk.css",
-    "main.js": "/cocktail-recipes/static/js/main.2426e0d5.chunk.js",
-    "main.js.map": "/cocktail-recipes/static/js/main.2426e0d5.chunk.js.map",
+    "main.js": "/cocktail-recipes/static/js/main.929ec884.chunk.js",
+    "main.js.map": "/cocktail-recipes/static/js/main.929ec884.chunk.js.map",
     "runtime-main.js": "/cocktail-recipes/static/js/runtime-main.1f158840.js",
     "runtime-main.js.map": "/cocktail-recipes/static/js/runtime-main.1f158840.js.map",
     "static/css/2.f2512455.chunk.css": "/cocktail-recipes/static/css/2.f2512455.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.f2512455.chunk.css",
     "static/js/2.1054c305.chunk.js",
     "static/css/main.5500200b.chunk.css",
-    "static/js/main.2426e0d5.chunk.js"
+    "static/js/main.929ec884.chunk.js"
   ]
 }
