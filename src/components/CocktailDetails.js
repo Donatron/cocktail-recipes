@@ -50,7 +50,7 @@ class CocktailDetails extends Component {
     const { cocktail, error, loading } = this.props;
     const { selectedCocktail } = cocktail;
 
-    { if (loading) return <LoadingSpinner /> }
+    if (loading) return <LoadingSpinner />
 
     return selectedCocktail && !error.message ? (
       <Container className="cocktail-details">
